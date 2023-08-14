@@ -9,11 +9,21 @@ app.use(express.json())
 
 const PORT = 4300
 
-app.post('/', async (req, res) => {
-    const data = await fetch(`http://api.geonames.org/searchJSON?name=${req.body.searchValue}&username=domieee&maxRows=100`)
-    const json = await data.json()
+app.get('/', async (req, res) => {
+    try {
+        const searchValue = req.query.searchValue;
+        if (!searchValue) {
+            return res.status(400).json({ error: "Missing searchValue parameter" });
+        }
 
-    res.send(json)
+        const data = await fetch(`http://api.geonames.org/searchJSON?name=${searchValue}&username=domieee&maxRows=100`)
+        const json = await data.json()
+
+        res.send(json)
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ error: "An error occurred" });
+    }
 })
 
 try {
