@@ -5,6 +5,7 @@ const app = express()
 import fetch from "node-fetch";
 
 app.use(express.json())
+app.use(cors({ origin: '*' }))
 
 // We use this server to provide city locations for Duelist Arena.
 // Since vervel is not allowing http requests, and the geonames api dont have a https endpoint, we us this server as a tunnel 
