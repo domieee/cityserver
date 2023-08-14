@@ -9,7 +9,7 @@ app.use(express.json())
 
 const PORT = 4300
 
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
     const data = await fetch(`http://api.geonames.org/searchJSON?name=${req.body.searchValue}&username=domieee&maxRows=100`)
     const json = await data.json()
 
