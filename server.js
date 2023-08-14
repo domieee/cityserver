@@ -2,6 +2,8 @@ import express from "express"
 
 const app = express()
 
+import fetch from "node-fetch";
+
 app.use(express.json())
 
 // We use this server to provide city locations for Duelist Arena.
